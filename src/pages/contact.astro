@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Contact Pluzi – Start your website project"
+  description="Tell Pluzi about your website project. Share your goals, business details and examples so we can respond with ideas, structure and next steps – all via email."
+>
+  <Header />
+
+  <main class="section">
+    <div class="container contact-page">
+      <div class="contact-page-intro">
+        <h1 class="contact-heading">Start your website project with Pluzi</h1>
+        <p class="contact-text">
+          Share a few details about your business and what you’d like from your website.
+          You’ll get a reply by email from Sonny with ideas, questions and a suggested next step.
+        </p>
+        <p class="contact-meta">
+          Prefer to write your own email? You can always reach us directly at
+          <br />
+          <strong>sonnywebsites@gmail.com</strong>.
+        </p>
+      </div>
+
+      <div class="contact-page-form-shell">
+        <form
+          class="contact-form"
+          method="POST"
+          action="mailto:sonnywebsites@gmail.com"
+          enctype="text/plain"
+        >
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="name">Your name</label>
+              <input id="name" name="Name" type="text" required />
+            </div>
+
+            <div class="form-field">
+              <label for="email">Email address</label>
+              <input id="email" name="Email" type="email" required />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="business">Business / company</label>
+              <input id="business" name="Business" type="text" />
+            </div>
+
+            <div class="form-field">
+              <label for="website-goal">Main goal of the website</label>
+              <input
+                id="website-goal"
+                name="Website goal"
+                type="text"
+                placeholder="For example: generate leads, book calls, present services…"
+              />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="pages">Rough number of pages</label>
+            <input
+              id="pages"
+              name="Approx. number of pages"
+              type="text"
+              placeholder="For example: 1, 3–5, not sure yet"
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="examples">Example sites you like</label>
+            <textarea
+              id="examples"
+              name="Example sites you like"
+              rows="3"
+              placeholder="Links or short descriptions of sites you like and why."
+            ></textarea>
+          </div>
+
+          <div class="form-field">
+            <label for="timeline">Rough timeline</label>
+            <input
+              id="timeline"
+              name="Rough timeline"
+              type="text"
+              placeholder="For example: this month, next 2–3 months, flexible"
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="details">Anything else we should know?</label>
+            <textarea
+              id="details"
+              name="Project details"
+              rows="5"
+              placeholder="Share any context, constraints or ideas that might help."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            Send details and start by email
+          </button>
+
+          <p class="contact-note">
+            This form uses your default email app to send the message to Sonny. You’ll receive
+            a copy in your outbox and can continue the conversation there.
+          </p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
