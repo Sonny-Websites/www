@@ -10,20 +10,21 @@ import Footer from '../components/Footer.astro';
 >
   <Header />
 
-  <section id="hero" class="section hero">
+  <section id="hero" class="section hero hero-brief">
     <div class="container hero-layout">
       <div>
         <div class="hero-kicker">
           <span class="hero-kicker-pill">Done‑for‑you</span>
-          Start with a short description of your site.
+          Websites without calls – everything via email.
         </div>
         <h1 class="hero-title">
-          Describe your website idea,<br />
-          <span class="hero-highlight">then add your email</span>.
+          Professional websites,<br />
+          <span class="hero-highlight">built for you via email</span>.
         </h1>
         <p class="hero-subtitle">
-          First, write a quick description of your site or offer. Then you’ll be asked for your
-          email so Sonny can reply – everything is sent together as a single form via email.
+          Email Pluzi what you need – we plan, design and build your entire website,
+          handle all the tech and edits, and launch it for you. No site builders,
+          no complicated platforms or interfaces, no calls – just clear results.
         </p>
 
         <div class="hero-meta-row">
@@ -31,75 +32,52 @@ import Footer from '../components/Footer.astro';
             <span class="hero-meta-dot"></span>
             Direct, 1‑on‑1 with Sonny
           </div>
-          <div class="hero-meta-pill">Two simple steps, one email</div>
+          <div class="hero-meta-pill">Quick project brief by email</div>
           <div class="hero-meta-pill">No dashboards, no calls</div>
         </div>
       </div>
 
-      <aside class="hero-right-shell">
-        <div class="hero-card">
-          <div class="hero-card-header">
-            <div class="hero-card-title">Share your project in two steps</div>
-            <div class="hero-card-status">
-              <span class="hero-card-status-dot"></span>
-              Takes about 1–2 minutes
-            </div>
+      <aside class="hero-right-shell hero-brief-form-shell">
+        <form
+          id="brief-landing-form"
+          class="contact-form"
+          method="post"
+          action="/__forms/contact"
+          novalidate
+        >
+          <input type="hidden" name="sourceSlug" value="project-brief-landing" />
+          <div class="form-group" id="brief-description-group">
+            <label for="brief-description">Short description of your site or business</label>
+            <textarea
+              id="brief-description"
+              name="description"
+              rows="6"
+              required
+              placeholder="Quickly describe what you do, who it’s for, and what you need the site to achieve."
+            ></textarea>
           </div>
-          <div class="hero-card-body">
-            <form id="brief-landing-form" class="contact-form">
-              <div id="brief-step-1" class="form-step">
-                <div class="form-step-label">Step 1 of 2</div>
-                <div class="form-group">
-                  <label for="brief-description">
-                    Short description of your site or offer
-                  </label>
-                  <textarea
-                    id="brief-description"
-                    name="description"
-                    rows="4"
-                    required
-                    placeholder="For example: Coaching business site with pages for Home, Services and Contact. Targeting solo founders in tech."
-                  ></textarea>
-                </div>
-                <button type="button" id="brief-next" class="btn btn-primary full-width">
-                  Next – add your email
-                </button>
-              </div>
-
-              <div id="brief-step-2" class="form-step" hidden>
-                <div class="form-step-label">Step 2 of 2</div>
-                <div class="form-group">
-                  <label for="brief-email">Your email address</label>
-                  <input
-                    id="brief-email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="you@example.com"
-                    autocomplete="email"
-                  />
-                </div>
-                <div class="form-actions-row">
-                  <button type="button" id="brief-back" class="btn btn-secondary">
-                    Back
-                  </button>
-                  <button type="submit" class="btn btn-primary">
-                    Submit and open email to Sonny
-                  </button>
-                </div>
-                <p class="form-helper">
-                  Your description and email are sent together in one message so Sonny has full
-                  context when he replies.
-                </p>
-              </div>
-            </form>
-            <div class="hero-card-panel">
-              <strong>What happens after you submit?</strong><br />
-              Your email client opens with your description and contact details pre‑filled. You can
-              review or edit the message before sending it to Sonny.
-            </div>
+          <div class="form-group form-group-inline" id="brief-email-group" hidden>
+            <label for="brief-email">Your email</label>
+            <input
+              id="brief-email"
+              name="email"
+              type="email"
+              required
+              aria-required="true"
+              disabled
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
           </div>
-        </div>
+          <input type="text" name="_hp" style="display:none" tabindex="-1" autocomplete="off" />
+          <button type="submit" class="btn btn-primary full-width">Send</button>
+          <div
+            id="brief-landing-response"
+            class="form-response"
+            role="alert"
+            aria-live="polite"
+          ></div>
+        </form>
       </aside>
     </div>
   </section>
@@ -435,74 +413,4 @@ import Footer from '../components/Footer.astro';
 
   <Footer />
 </BaseLayout>
-
-<script>
-  if (typeof window !== 'undefined') {
-    const form = document.getElementById('brief-landing-form');
-    const step1 = document.getElementById('brief-step-1');
-    const step2 = document.getElementById('brief-step-2');
-    const nextBtn = document.getElementById('brief-next');
-    const backBtn = document.getElementById('brief-back');
-
-    const descriptionInput = /** @type {HTMLTextAreaElement | null} */ (
-      document.getElementById('brief-description')
-    );
-    const emailInput = /** @type {HTMLInputElement | null} */ (
-      document.getElementById('brief-email')
-    );
-
-    if (nextBtn && step1 && step2 && descriptionInput) {
-      nextBtn.addEventListener('click', () => {
-        const value = descriptionInput
-          ? (descriptionInput as HTMLTextAreaElement).value.trim()
-          : '';
-        if (!value) {
-          descriptionInput.focus();
-          return;
-        }
-        step1.setAttribute('hidden', 'true');
-        step2.removeAttribute('hidden');
-        emailInput?.focus();
-      });
-    }
-
-    if (backBtn && step1 && step2 && descriptionInput) {
-      backBtn.addEventListener('click', () => {
-        step2.setAttribute('hidden', 'true');
-        step1.removeAttribute('hidden');
-        descriptionInput.focus();
-      });
-    }
-
-    if (form) {
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const description = descriptionInput
-          ? (descriptionInput as HTMLTextAreaElement).value.trim()
-          : '';
-        const email = emailInput ? (emailInput as HTMLInputElement).value.trim() : '';
-
-        if (!description) {
-          step2?.setAttribute('hidden', 'true');
-          step1?.removeAttribute('hidden');
-          descriptionInput?.focus();
-          return;
-        }
-
-        if (!email) {
-          emailInput?.focus();
-          return;
-        }
-
-        const subject = encodeURIComponent('New project brief from Pluzi landing');
-        const body = encodeURIComponent(
-          `Project description:\n${description}\n\nEmail: ${email}`
-        );
-
-        window.location.href = `mailto:sonnywebsites@gmail.com?subject=${subject}&body=${body}`;
-      });
-    }
-  }
-</script>
 
