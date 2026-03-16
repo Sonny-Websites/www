@@ -1,0 +1,153 @@
+:root {
+  --primary: #4caf50;
+  --primary-dark: #45a049;
+  --text-main: #333333;
+  --bg-light: #f4f4f4;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: #ffffff;
+}
+
+header {
+  background-color: var(--primary);
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.brand-subtitle {
+  margin-top: 0.35rem;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+section {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+section h2 {
+  margin-top: 0;
+}
+
+#hero {
+  background-color: var(--bg-light);
+  padding: 4rem 1.5rem;
+}
+
+#hero h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+#hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+}
+
+#how-it-works {
+  background-color: #ffffff;
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.step {
+  flex: 1 1 200px;
+  max-width: 250px;
+}
+
+.step h3 {
+  color: var(--primary);
+}
+
+#benefits {
+  background-color: var(--bg-light);
+}
+
+#benefits ul {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#benefits li {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+#contact {
+  background-color: #ffffff;
+}
+
+footer {
+  background-color: #333333;
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
