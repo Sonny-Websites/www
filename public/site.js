@@ -21,6 +21,26 @@ function enableButton(btn) {
   }
 }
 
+function showFormSuccess(form, responseEl, message) {
+  form.classList.add('form-submitted');
+  var groups = form.querySelectorAll('.form-group, .form-step-indicator, button[type="submit"], input[name="_hp"]');
+  for (var i = 0; i < groups.length; i++) {
+    groups[i].style.display = 'none';
+  }
+  if (responseEl) {
+    responseEl.innerHTML = '';
+    responseEl.className = 'form-response form-success';
+    var check = document.createElement('div');
+    check.className = 'form-success-icon';
+    check.textContent = '\u2713';
+    var msg = document.createElement('p');
+    msg.className = 'form-success-text';
+    msg.textContent = message;
+    responseEl.appendChild(check);
+    responseEl.appendChild(msg);
+  }
+}
+
 function initEmailLandingForm() {
   const form = document.getElementById('email-landing-form');
   if (!form) return;
@@ -38,6 +58,7 @@ function initEmailLandingForm() {
     if (!email || !isValidEmail(email)) {
       if (responseEl) {
         responseEl.textContent = 'Please enter a valid email address.';
+        responseEl.className = 'form-response';
       }
       emailInput.focus();
       return;
@@ -45,6 +66,7 @@ function initEmailLandingForm() {
 
     if (responseEl) {
       responseEl.textContent = '';
+      responseEl.className = 'form-response';
     }
 
     disableButton(submitBtn, 'Sending...');
@@ -71,26 +93,13 @@ function initEmailLandingForm() {
         throw new Error('Non-2xx response');
       }
 
-      let data = null;
-      try {
-        data = await res.json();
-      } catch (_) {
-        // ignore JSON parse issues; fall back to redirect
-      }
-
-      const redirectUrl =
-        data && data.redirect
-          ? data.redirect
-          : (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL
-              ? import.meta.env.BASE_URL
-              : '/') + 'thank-you/';
-
-      window.location.href = redirectUrl;
+      showFormSuccess(form, responseEl, 'Thanks! Sonny will be in touch shortly.');
     } catch (err) {
       console.error('Email landing form submission failed', err);
       enableButton(submitBtn);
       if (responseEl) {
         responseEl.textContent = 'Something went wrong sending your details. Please try again.';
+        responseEl.className = 'form-response';
       }
     }
   });
@@ -106,7 +115,6 @@ function initProjectBriefForm() {
   const emailInput = document.getElementById('brief-email');
   const responseEl = document.getElementById('brief-landing-response');
   const submitBtn = form.querySelector('button[type="submit"]');
-
   let emailStage = false;
 
   if (emailGroup instanceof HTMLElement) {
@@ -131,6 +139,7 @@ function initProjectBriefForm() {
       if (!description || description.length < 10) {
         if (responseEl) {
           responseEl.textContent = 'Please add a bit more detail about your site or business.';
+          responseEl.className = 'form-response';
         }
         if (descriptionInput) {
           descriptionInput.focus();
@@ -155,6 +164,10 @@ function initProjectBriefForm() {
       if (submitBtn) {
         submitBtn.textContent = 'Submit';
       }
+      if (responseEl) {
+        responseEl.textContent = '';
+        responseEl.className = 'form-response';
+      }
 
       return;
     }
@@ -166,6 +179,7 @@ function initProjectBriefForm() {
     if (!email || !isValidEmail(email)) {
       if (responseEl) {
         responseEl.textContent = 'Please enter a valid email address.';
+        responseEl.className = 'form-response';
       }
       emailInput.focus();
       return;
@@ -173,6 +187,7 @@ function initProjectBriefForm() {
 
     if (responseEl) {
       responseEl.textContent = '';
+      responseEl.className = 'form-response';
     }
 
     disableButton(submitBtn, 'Sending...');
@@ -199,26 +214,13 @@ function initProjectBriefForm() {
         throw new Error('Non-2xx response');
       }
 
-      let data = null;
-      try {
-        data = await res.json();
-      } catch (_) {
-        // ignore JSON parse issues; fall back to redirect
-      }
-
-      const redirectUrl =
-        data && data.redirect
-          ? data.redirect
-          : (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL
-              ? import.meta.env.BASE_URL
-              : '/') + 'thank-you/';
-
-      window.location.href = redirectUrl;
+      showFormSuccess(form, responseEl, 'Thanks! Sonny will review your brief and get back to you shortly.');
     } catch (err) {
       console.error('Project brief form submission failed', err);
       enableButton(submitBtn);
       if (responseEl) {
         responseEl.textContent = 'Something went wrong sending your project. Please try again.';
+        responseEl.className = 'form-response';
       }
     }
   });
