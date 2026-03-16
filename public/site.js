@@ -71,8 +71,8 @@ function initEmailLandingForm() {
 
     disableButton(submitBtn, 'Sending...');
 
-    const formData = new FormData(form);
-    formData.append('formName', 'email-landing');
+    const body = new URLSearchParams(new FormData(form));
+    body.append('formName', 'email-landing');
 
     try {
       const controller = new AbortController();
@@ -80,9 +80,10 @@ function initEmailLandingForm() {
 
       const res = await fetch(form.action || '/__forms/contact', {
         method: 'POST',
-        body: formData,
+        body: body,
         headers: {
           Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
         signal: controller.signal,
       });
@@ -192,8 +193,8 @@ function initProjectBriefForm() {
 
     disableButton(submitBtn, 'Sending...');
 
-    const formData = new FormData(form);
-    formData.append('formName', 'project-brief-landing');
+    const body = new URLSearchParams(new FormData(form));
+    body.append('formName', 'project-brief-landing');
 
     try {
       const controller = new AbortController();
@@ -201,9 +202,10 @@ function initProjectBriefForm() {
 
       const res = await fetch(form.action || '/__forms/contact', {
         method: 'POST',
-        body: formData,
+        body: body,
         headers: {
           Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
         signal: controller.signal,
       });

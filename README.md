@@ -248,6 +248,7 @@ This template is built with **Astro** (static output). Use these conventions whe
 
 - The contact form posts to **`/__forms/contact`**. That path is handled by the Pluzi proxy server (see below), which forwards to n8n and then redirects to the thank-you page.
 - Keep the form `action="/__forms/contact"` and let the client script submit via `fetch` and redirect on success. Do not change the path to include the base; the server sees the request on the same host and path.
+- **Content-Type must be `application/x-www-form-urlencoded`:** The proxy server only parses URL-encoded and JSON bodies. When submitting via `fetch`, always convert `FormData` to `URLSearchParams` (e.g. `new URLSearchParams(new FormData(form))`) and set `Content-Type: application/x-www-form-urlencoded`. Do **not** pass a raw `FormData` object as the fetch body — that sends `multipart/form-data`, which the server cannot parse, and all fields will be silently lost.
 
 ---
 
