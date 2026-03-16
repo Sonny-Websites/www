@@ -5,8 +5,8 @@ import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout
-  title="Pluzi – Professional websites, built via email"
-  description="Pluzi designs, builds and launches your website through simple email conversations – no builders, no calls, no dashboards."
+  title="Pluzi – Project brief landing"
+  description="Share a short description of your site, then your email, so Sonny can get back to you."
 >
   <Header />
 
@@ -15,16 +15,15 @@ import Footer from '../components/Footer.astro';
       <div>
         <div class="hero-kicker">
           <span class="hero-kicker-pill">Done‑for‑you</span>
-          Websites without calls – everything via email.
+          Start with a short description of your site.
         </div>
         <h1 class="hero-title">
-          Professional websites,<br />
-          <span class="hero-highlight">built for you via email</span>.
+          Describe your website idea,<br />
+          <span class="hero-highlight">then add your email</span>.
         </h1>
         <p class="hero-subtitle">
-          Email Pluzi what you need – we plan, design and build your entire website,
-          handle all the tech and edits, and launch it for you. No site builders,
-          no complicated platforms or interfaces, no calls – just clear results.
+          First, write a quick description of your site or offer. Then you’ll be asked for your
+          email so Sonny can reply – everything is sent together as a single form via email.
         </p>
 
         <div class="hero-meta-row">
@@ -32,79 +31,74 @@ import Footer from '../components/Footer.astro';
             <span class="hero-meta-dot"></span>
             Direct, 1‑on‑1 with Sonny
           </div>
-          <div class="hero-meta-pill">Delivered in days, depending on scope</div>
-          <div class="hero-meta-pill">
-            Sonny usually replies within minutes (up to 1&nbsp;hour)
-          </div>
-        </div>
-
-        <div class="btn-row">
-          <a
-            href="mailto:sonnywebsites@gmail.com?subject=Website%20project%20with%20Pluzi&body=Hi%20Sonny%2C%0AI%27d%20like%20to%20build%20a%20website%20with%20Pluzi.%20Here%20are%20some%20initial%20details%20about%20my%20project%3A%0A-%20Business%20%2F%20industry%3A%0A-%20Goal%20of%20the%20website%3A%0A-%20Approx.%20number%20of%20pages%3A%0A-%20Example%20sites%20you%20like%3A%0A%0AThanks!%0A"
-            class="btn btn-primary"
-          >
-            Start your project by email
-          </a>
-          <a href="#services" class="btn btn-secondary">See how it works</a>
-        </div>
-
-        <div class="metrics-row">
-          <div class="metric">
-          <div class="metric-label">Process</div>
-            <div class="metric-value">100%</div>
-          <div class="metric-note">handled fully over email</div>
-          </div>
-          <div class="metric">
-          <div class="metric-label">Your workload</div>
-          <div class="metric-value">Low</div>
-          <div class="metric-note">we handle all the technical parts</div>
-          </div>
-          <div class="metric">
-          <div class="metric-label">Support</div>
-          <div class="metric-value">Direct</div>
-          <div class="metric-note">1‑on‑1 with Sonny</div>
-          </div>
+          <div class="hero-meta-pill">Two simple steps, one email</div>
+          <div class="hero-meta-pill">No dashboards, no calls</div>
         </div>
       </div>
 
       <aside class="hero-right-shell">
         <div class="hero-card">
           <div class="hero-card-header">
-            <div class="hero-card-title">Your website project with Pluzi</div>
+            <div class="hero-card-title">Share your project in two steps</div>
             <div class="hero-card-status">
               <span class="hero-card-status-dot"></span>
-              In progress
+              Takes about 1–2 minutes
             </div>
           </div>
           <div class="hero-card-body">
-            <ul class="hero-card-list">
-              <li>
-                <span class="hero-card-check">✓</span>
-                <span>You send an email with your goals, examples and rough ideas.</span>
-              </li>
-              <li>
-                <span class="hero-card-check">✓</span>
-                <span>Sonny plans structure, design and key content for your site.</span>
-              </li>
-              <li>
-                <span class="hero-card-check">✓</span>
-                <span>All changes are tracked in clear, written email threads.</span>
-              </li>
-              <li>
-                <span class="hero-card-check">✓</span>
-                <span>Launch, hosting setup &amp; final checks – all handled for you.</span>
-              </li>
-            </ul>
+            <form id="brief-landing-form" class="contact-form">
+              <div id="brief-step-1" class="form-step">
+                <div class="form-step-label">Step 1 of 2</div>
+                <div class="form-group">
+                  <label for="brief-description">
+                    Short description of your site or offer
+                  </label>
+                  <textarea
+                    id="brief-description"
+                    name="description"
+                    rows="4"
+                    required
+                    placeholder="For example: Coaching business site with pages for Home, Services and Contact. Targeting solo founders in tech."
+                  ></textarea>
+                </div>
+                <button type="button" id="brief-next" class="btn btn-primary full-width">
+                  Next – add your email
+                </button>
+              </div>
+
+              <div id="brief-step-2" class="form-step" hidden>
+                <div class="form-step-label">Step 2 of 2</div>
+                <div class="form-group">
+                  <label for="brief-email">Your email address</label>
+                  <input
+                    id="brief-email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                  />
+                </div>
+                <div class="form-actions-row">
+                  <button type="button" id="brief-back" class="btn btn-secondary">
+                    Back
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    Submit and open email to Sonny
+                  </button>
+                </div>
+                <p class="form-helper">
+                  Your description and email are sent together in one message so Sonny has full
+                  context when he replies.
+                </p>
+              </div>
+            </form>
             <div class="hero-card-panel">
-              <strong>Perfect for solo founders &amp; small teams.</strong><br />
-              No tech rabbit holes, no complicated platforms or interfaces,
-              no dashboards to learn – you answer emails, Pluzi handles the rest.
+              <strong>What happens after you submit?</strong><br />
+              Your email client opens with your description and contact details pre‑filled. You can
+              review or edit the message before sending it to Sonny.
             </div>
           </div>
-        </div>
-        <div class="hero-floating-badge">
-          <span class="hero-floating-dot"></span>
-          Real support instead of template helpdesks
         </div>
       </aside>
     </div>
@@ -153,12 +147,12 @@ import Footer from '../components/Footer.astro';
       <div class="services-grid">
         <article class="service-card">
           <div class="service-tag">Step 1</div>
-          <h3 class="service-title">Email your ideas and context</h3>
+          <h3 class="service-title">Share your context and goals</h3>
           <p class="service-text">
-            Send a message to <a href="mailto:sonnywebsites@gmail.com">sonnywebsites@gmail.com</a>
-            with a short description of your business, goals and example sites you like.
+            Start with a short project description, like on this page, or by emailing
+            <a href="mailto:sonnywebsites@gmail.com">sonnywebsites@gmail.com</a> directly.
           </p>
-          <div class="service-meta">No forms, no account – just a normal email.</div>
+          <div class="service-meta">No accounts or dashboards – everything starts with a message.</div>
         </article>
 
         <article class="service-card">
@@ -414,88 +408,26 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
 
-  <section id="faq" class="section section-muted">
-    <div class="container faq-grid">
-      <div>
-        <div class="section-title">
-          <span class="section-title-dot"></span>
-          FAQ
-        </div>
-        <h2 class="section-heading">Frequently asked questions about Pluzi.</h2>
-        <p class="section-subtitle">
-          These are the most common questions about how we work, timing and what you need
-          to prepare. If something is still unclear, just send an email.
-        </p>
-        <p class="faq-tagline">
-          Prefer to ask directly? Just email
-          <a href="mailto:sonnywebsites@gmail.com">sonnywebsites@gmail.com</a>.
-        </p>
-        <div class="pill-row">
-          <span class="pill">No complicated platforms or interfaces</span>
-          <span class="pill">Direct contact</span>
-          <span class="pill">Flexible changes</span>
-        </div>
-      </div>
-      <div class="faq-list">
-        <div>
-          <h3 class="faq-item-title">How does the collaboration actually work?</h3>
-          <p class="faq-item-text">
-            You start with an email where you briefly describe your business, your goals
-            and what you want from the website. Based on that, Sonny asks follow‑up
-            questions, proposes structure and design, and confirms everything with you
-            in writing. Once you give the go‑ahead, the site is built and refined until
-            you’re happy.
-          </p>
-        </div>
-        <div>
-          <h3 class="faq-item-title">How long does it take until my site is ready?</h3>
-          <p class="faq-item-text">
-            Small projects (like a landing page or a 1–3 page site) can often be finished
-            within a few days to a couple of weeks, depending on complexity. The main
-            factor is how quickly you can respond to emails and approve content.
-          </p>
-        </div>
-        <div>
-          <h3 class="faq-item-title">Do I need finished copy and images already?</h3>
-          <p class="faq-item-text">
-            No – you don’t have to have everything perfect upfront. It’s enough to outline
-            your services, target audience and preferences. From there we can help with
-            structure and copy, and plug in your photos where they fit best.
-          </p>
-        </div>
-        <div>
-          <h3 class="faq-item-title">What if I want to change something later?</h3>
-          <p class="faq-item-text">
-            Updates and additions are always possible. Just send an email with what you’d
-            like to change, and we’ll estimate effort and implementation clearly so you
-            know what to expect.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section id="contact" class="section">
     <div class="container">
       <div class="contact-shell">
         <div>
-          <h2 class="contact-heading">Ready to start your website over email?</h2>
+          <h2 class="contact-heading">Prefer to start with a direct email?</h2>
           <p class="contact-text">
-            Send Pluzi a short message with a few bullet points about your project.
-            You’ll get a reply with questions, ideas and a first rough estimate.
+            You can also email Pluzi directly with a few bullet points about your project.
           </p>
           <p class="contact-meta">
-            Email <strong>sonnywebsites@gmail.com</strong> directly – no forms or portals.
+            Email <strong>sonnywebsites@gmail.com</strong> – Sonny will reply personally.
           </p>
         </div>
         <div class="contact-actions">
           <a
-            href="mailto:sonnywebsites@gmail.com?subject=Website%20project%20with%20Pluzi&body=Hi%20Sonny%2C%0AI%27d%20like%20to%20start%20a%20website%20project%20with%20Pluzi.%20Here%20are%20a%20few%20details%20about%20my%20project%3A%0A-%20Business%20%2F%20industry%3A%0A-%20Goal%20of%20the%20website%3A%0A-%20Example%20sites%20you%20like%3A%0A-%20Rough%20timeline%3A%0A%0AThanks!%0A"
+            href="mailto:sonnywebsites@gmail.com?subject=Website%20project%20with%20Pluzi"
             class="btn btn-primary"
           >
-            Ask about your project by email
+            Email Sonny about your project
           </a>
-          <span class="contact-pill">Sonny usually replies within minutes (up to 1 hour)</span>
+          <span class="contact-pill">Replies usually within minutes (up to 1 hour)</span>
         </div>
       </div>
     </div>
@@ -503,4 +435,74 @@ import Footer from '../components/Footer.astro';
 
   <Footer />
 </BaseLayout>
+
+<script>
+  if (typeof window !== 'undefined') {
+    const form = document.getElementById('brief-landing-form');
+    const step1 = document.getElementById('brief-step-1');
+    const step2 = document.getElementById('brief-step-2');
+    const nextBtn = document.getElementById('brief-next');
+    const backBtn = document.getElementById('brief-back');
+
+    const descriptionInput = /** @type {HTMLTextAreaElement | null} */ (
+      document.getElementById('brief-description')
+    );
+    const emailInput = /** @type {HTMLInputElement | null} */ (
+      document.getElementById('brief-email')
+    );
+
+    if (nextBtn && step1 && step2 && descriptionInput) {
+      nextBtn.addEventListener('click', () => {
+        const value = descriptionInput
+          ? (descriptionInput as HTMLTextAreaElement).value.trim()
+          : '';
+        if (!value) {
+          descriptionInput.focus();
+          return;
+        }
+        step1.setAttribute('hidden', 'true');
+        step2.removeAttribute('hidden');
+        emailInput?.focus();
+      });
+    }
+
+    if (backBtn && step1 && step2 && descriptionInput) {
+      backBtn.addEventListener('click', () => {
+        step2.setAttribute('hidden', 'true');
+        step1.removeAttribute('hidden');
+        descriptionInput.focus();
+      });
+    }
+
+    if (form) {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const description = descriptionInput
+          ? (descriptionInput as HTMLTextAreaElement).value.trim()
+          : '';
+        const email = emailInput ? (emailInput as HTMLInputElement).value.trim() : '';
+
+        if (!description) {
+          step2?.setAttribute('hidden', 'true');
+          step1?.removeAttribute('hidden');
+          descriptionInput?.focus();
+          return;
+        }
+
+        if (!email) {
+          emailInput?.focus();
+          return;
+        }
+
+        const subject = encodeURIComponent('New project brief from Pluzi landing');
+        const body = encodeURIComponent(
+          `Project description:\n${description}\n\nEmail: ${email}`
+        );
+
+        window.location.href = `mailto:sonnywebsites@gmail.com?subject=${subject}&body=${body}`;
+      });
+    }
+  }
+</script>
 
