@@ -60,6 +60,55 @@ section h2 {
   margin-top: 0;
 }
 
+#email-signup {
+  background-color: var(--bg-light);
+}
+
+.email-form {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.email-form input[type="email"] {
+  min-width: min(420px, 100%);
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 5px;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.email-form input[type="email"]:focus {
+  outline: 2px solid rgba(76, 175, 80, 0.5);
+  outline-offset: 2px;
+}
+
+.email-form .hp {
+  display: none;
+}
+
+.form-note {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 #hero {
   background-color: var(--bg-light);
   padding: 4rem 1.5rem;
@@ -148,6 +197,15 @@ footer {
   .steps {
     flex-direction: column;
     align-items: center;
+  }
+
+  .email-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .email-form input[type="email"] {
+    width: 100%;
   }
 }
 

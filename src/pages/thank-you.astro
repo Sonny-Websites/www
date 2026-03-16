@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL || '/';
+---
+
+<BaseLayout title="Thank you - Pluzi" description="Thanks for reaching out to Pluzi.">
+  <Header />
+
+  <section id="thank-you">
+    <h2>Thank you!</h2>
+    <p>We got your submission. Sonny will be in touch soon.</p>
+    <a class="cta-button" href={base}>Back to home</a>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
