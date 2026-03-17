@@ -1,3 +1,18 @@
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-11552877667/nDyCCPb0_MYbEOPY64Qr',
+      'value': 1.0,
+      'currency': 'USD',
+      'event_callback': callback
+  });
+  return false;
+}
+
 // Basic utilities
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -95,6 +110,7 @@ function initEmailLandingForm() {
       }
 
       showFormSuccess(form, responseEl, 'Thanks! Sonny will be in touch shortly.');
+      gtag_report_conversion();
     } catch (err) {
       console.error('Email landing form submission failed', err);
       enableButton(submitBtn);
@@ -217,6 +233,7 @@ function initProjectBriefForm() {
       }
 
       showFormSuccess(form, responseEl, 'Thanks! Sonny will review your brief and get back to you shortly.');
+      gtag_report_conversion();
     } catch (err) {
       console.error('Project brief form submission failed', err);
       enableButton(submitBtn);
