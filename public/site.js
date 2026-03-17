@@ -245,8 +245,114 @@ function initProjectBriefForm() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function initContactForm() {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+
+  var nameInput = document.getElementById('contact-name');
+  var emailInput = document.getElementById('contact-email');
+  var messageInput = document.getElementById('contact-message');
+  var nameError = document.getElementById('contact-name-error');
+  var emailError = document.getElementById('contact-email-error');
+  var messageError = document.getElementById('contact-message-error');
+  var responseEl = document.getElementById('contact-response');
+  var submitBtn = form.querySelector('button[type="submit"]');
+
+  function validateName() {
+    var val = nameInput ? nameInput.value.trim() : '';
+    if (val.length < 2) {
+      if (nameError) nameError.textContent = 'Please enter at least 2 characters.';
+      return false;
+    }
+    if (nameError) nameError.textContent = '';
+    return true;
+  }
+
+  function validateEmail() {
+    var val = emailInput ? emailInput.value.trim() : '';
+    if (!val || !isValidEmail(val)) {
+      if (emailError) emailError.textContent = 'Please enter a valid email address.';
+      return false;
+    }
+    if (emailError) emailError.textContent = '';
+    return true;
+  }
+
+  function validateMessage() {
+    var val = messageInput ? messageInput.value.trim() : '';
+    if (val.length < 10) {
+      if (messageError) messageError.textContent = 'Please enter at least 10 characters.';
+      return false;
+    }
+    if (messageError) messageError.textContent = '';
+    return true;
+  }
+
+  if (nameInput) {
+    nameInput.addEventListener('blur', validateName);
+    nameInput.addEventListener('input', function () { if (nameError && nameError.textContent) validateName(); });
+  }
+  if (emailInput) {
+    emailInput.addEventListener('blur', validateEmail);
+    emailInput.addEventListener('input', function () { if (emailError && emailError.textContent) validateEmail(); });
+  }
+  if (messageInput) {
+    messageInput.addEventListener('blur', validateMessage);
+    messageInput.addEventListener('input', function () { if (messageError && messageError.textContent) validateMessage(); });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var hp = form.querySelector('input[name="_hp"]');
+    if (hp && hp.value) return;
+
+    var validName = validateName();
+    var validEmail = validateEmail();
+    var validMsg = validateMessage();
+    if (!validName || !validEmail || !validMsg) return;
+
+    if (responseEl) {
+      responseEl.textContent = '';
+      responseEl.className = 'form-response';
+    }
+
+    disableButton(submitBtn, 'Sending...');
+
+    var body = new URLSearchParams(new FormData(form));
+    body.append('formName', 'contact');
+
+    var controller = new AbortController();
+    var timeoutId = setTimeout(function () { controller.abort(); }, 30000);
+
+    fetch(form.action || '/__forms/contact', {
+      method: 'POST',
+      body: body,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      signal: controller.signal
+    }).then(function (res) {
+      clearTimeout(timeoutId);
+      if (!res.ok) throw new Error('Non-2xx response');
+      showFormSuccess(form, responseEl, 'Thanks! Sonny will be in touch shortly.');
+      gtag_report_conversion();
+    }).catch(function (err) {
+      clearTimeout(timeoutId);
+      console.error('Contact form submission failed', err);
+      enableButton(submitBtn);
+      if (responseEl) {
+        responseEl.textContent = 'Something went wrong. Please try again.';
+        responseEl.className = 'form-response';
+      }
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
   initEmailLandingForm();
   initProjectBriefForm();
+  initContactForm();
 });
 

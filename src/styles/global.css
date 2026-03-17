@@ -314,6 +314,12 @@ header {
   justify-content: center;
 }
 
+.form-error {
+  font-size: 0.8rem;
+  color: #dc2626;
+  min-height: 1em;
+}
+
 .form-response {
   font-size: 0.85rem;
   color: #dc2626;
@@ -874,6 +880,31 @@ header {
   border-radius: 999px;
   border: 1px solid rgba(22, 163, 74, 0.6);
   background: #bbf7d0;
+}
+
+.contact-page {
+  max-width: 640px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.contact-page-intro {
+  margin-bottom: 2rem;
+}
+
+.contact-page-form-shell {
+  border-radius: 1.6rem;
+  padding: 1.8rem 1.9rem;
+  background: #ecfdf3;
+  border: 1px solid rgba(52, 211, 153, 0.7);
+  box-shadow: 0 20px 45px rgba(5, 46, 22, 0.12);
+}
+
+.contact-note {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0;
+  text-align: center;
 }
 
 footer {
