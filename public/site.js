@@ -4,11 +4,14 @@ function gtag_report_conversion(url) {
       window.location = url;
     }
   };
-  gtag('event', 'conversion', {
+  if (typeof window.gtag !== 'function') {
+    return false;
+  }
+  window.gtag('event', 'conversion', {
       'send_to': 'AW-11552877667/nDyCCPb0_MYbEOPY64Qr',
       'value': 1.0,
-      'currency': 'USD',
-      'event_callback': callback
+    'currency': 'USD',
+    'event_callback': callback
   });
   return false;
 }
