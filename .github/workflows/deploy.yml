@@ -19,6 +19,8 @@ jobs:
     env:
       # Base path for project Pages: /<repo-name>/. For user/org Pages (repo named *.github.io), override with BASE_PATH: '/'
       BASE_PATH: /${{ github.event.repository.name }}/
+      # Origin only (no path); combined with BASE_PATH for sitemap and canonical URLs
+      SITE_URL: https://${{ github.repository_owner }}.github.io
     steps:
       - uses: actions/checkout@v4
 
